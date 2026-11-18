@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../core/cards.dart';
 import '../../core/format.dart';
@@ -59,7 +59,7 @@ class BuyerHome extends StatelessWidget {
                   children: [
                     Icon(Icons.search, color: AppColors.muted),
                     SizedBox(width: 10),
-                    Text('Tomates, maïs, cacao…', style: TextStyle(color: AppColors.muted, fontSize: 15)),
+                    Expanded(child: Text('Tomates, maïs, cacao…', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: AppColors.muted, fontSize: 15))),
                   ],
                 ),
               ),
@@ -102,7 +102,7 @@ class BuyerHome extends StatelessWidget {
           if (flash.isNotEmpty) ...[
             const SectionTitle('⚡ Ventes Flash près de vous'),
             SizedBox(
-              height: 168,
+              height: 150,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -110,16 +110,16 @@ class BuyerHome extends StatelessWidget {
                 separatorBuilder: (_, _) => const SizedBox(width: 10),
                 itemBuilder: (_, i) => SizedBox(
                   width: 290,
-                  child: FlashCard(lot: flash[i], onTap: () => go<void>(context, FlashDetailScreen(lot: flash[i]))),
+                  child: FlashCard(lot: flash[i], compact: true, onTap: () => go<void>(context, FlashDetailScreen(lot: flash[i]))),
                 ),
               ),
             ),
           ],
           SectionTitle('Recommandé pour vous', action: 'Marché', onAction: () => go<void>(context, const MarketScreen(standalone: true))),
           if (recommended.isEmpty)
-            Padding(
+            const Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: const InfoBanner(
+              child: InfoBanner(
                 icon: Icons.lightbulb_outline,
                 text: 'Publiez une demande : nous vous proposons les meilleures offres selon la distance, le prix et la quantité.',
                 margin: EdgeInsets.zero,

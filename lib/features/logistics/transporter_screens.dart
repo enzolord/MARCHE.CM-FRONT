@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../core/format.dart';
 import '../../core/theme.dart';
@@ -36,7 +36,7 @@ class _TransporterHomeState extends State<TransporterHome> {
           bottom: TabBar(tabs: [
             Tab(text: 'Proposées (${proposed.length})'),
             Tab(text: 'En cours (${current.length})'),
-            Tab(text: 'Terminées'),
+            const Tab(text: 'Terminées'),
           ]),
         ),
         body: Column(

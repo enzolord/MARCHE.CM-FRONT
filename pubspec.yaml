@@ -11,6 +11,9 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  # Composants Material et Cupertino, sortis du SDK depuis Flutter 3.47.
+  material_ui: any
+  cupertino_ui: any
 
 dev_dependencies:
   flutter_test:

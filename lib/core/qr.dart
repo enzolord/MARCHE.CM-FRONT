@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Représentation visuelle d'un code QR de traçabilité (démo).
 /// En production, utiliser un vrai encodeur QR (paquet qr_flutter).

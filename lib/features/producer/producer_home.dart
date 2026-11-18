@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../core/cards.dart';
 import '../../core/format.dart';
@@ -51,7 +51,7 @@ class ProducerHome extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 104,
+            height: 118,
             child: ListView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -172,7 +172,7 @@ class _QuickAction extends StatelessWidget {
             children: [
               CircleAvatar(radius: 18, backgroundColor: color.withValues(alpha: 0.12), child: Icon(icon, color: color, size: 20)),
               const Spacer(),
-              Text(label, style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w600, height: 1.15)),
+              Text(label, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w600, height: 1.15)),
             ],
           ),
         ),

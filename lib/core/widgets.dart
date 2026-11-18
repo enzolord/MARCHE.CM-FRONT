@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../data/app_state.dart';
 import '../data/models.dart';
@@ -623,23 +623,26 @@ class FlashPrice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Ticker(
       period: const Duration(seconds: 30),
-      builder: (context, now) => Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            '${groupThousands(lot.priceAt(now))} F',
-            style: TextStyle(fontSize: big ? 28 : 18, fontWeight: FontWeight.w900, color: AppColors.flash),
-          ),
-          Text(' /${lot.product.unit}', style: const TextStyle(color: AppColors.muted)),
-          const SizedBox(width: 8),
-          if (lot.priceAt(now) < lot.initialPrice)
-            Text(
-              '${groupThousands(lot.initialPrice)} F',
-              style: const TextStyle(color: AppColors.muted, decoration: TextDecoration.lineThrough),
+      builder: (context, now) {
+        final price = lot.priceAt(now);
+        return Text.rich(
+          TextSpan(children: [
+            TextSpan(
+              text: '${groupThousands(price)} F',
+              style: TextStyle(fontSize: big ? 28 : 18, fontWeight: FontWeight.w900, color: AppColors.flash),
             ),
-        ],
-      ),
+            TextSpan(text: ' /${lot.product.unit}  ', style: const TextStyle(color: AppColors.muted)),
+            if (price < lot.initialPrice)
+              TextSpan(
+                text: '${groupThousands(lot.initialPrice)} F',
+                style: const TextStyle(color: AppColors.muted, decoration: TextDecoration.lineThrough),
+              ),
+          ]),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          textAlign: big ? TextAlign.center : TextAlign.start,
+        );
+      },
     );
   }
 }

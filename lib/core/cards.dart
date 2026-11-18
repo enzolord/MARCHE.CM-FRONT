@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../data/models.dart';
 import 'format.dart';
@@ -42,7 +42,7 @@ class OfferCard extends StatelessWidget {
                           ),
                         ),
                         if (score != null) Pill('$score %', color: AppColors.flash, icon: Icons.bolt),
-                        if (trailing != null) trailing!,
+                        ?trailing,
                       ],
                     ),
                     const SizedBox(height: 2),
