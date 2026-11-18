@@ -139,13 +139,13 @@ class _OfferFormScreenState extends State<OfferFormScreen> {
             const SizedBox(height: 16),
             const _Label('Qualité estimée'),
             SegmentedButton<Grade>(
-              segments: [for (final g in Grade.values) ButtonSegment(value: g, label: Text('${g.code} · ${g.label}'))],
+              segments: [for (final g in Grade.values) ButtonSegment(value: g, label: Text('Grade ${g.code}'))],
               selected: {_grade},
               showSelectedIcon: false,
               onSelectionChanged: (s) => setState(() => _grade = s.first),
             ),
             const SizedBox(height: 6),
-            const Text('Le grade est confirmé par l’agent au point de collecte.', style: TextStyle(color: AppColors.muted, fontSize: 12.5)),
+            Text('${_grade.label} — le grade est confirmé par l’agent au point de collecte.', style: const TextStyle(color: AppColors.muted, fontSize: 12.5)),
             const SizedBox(height: 16),
             ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),

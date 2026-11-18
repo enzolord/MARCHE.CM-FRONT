@@ -192,11 +192,13 @@ class _ControlScreenState extends State<ControlScreen> {
           const Text('Grade attribué', style: TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 8),
           SegmentedButton<Grade>(
-            segments: [for (final g in Grade.values) ButtonSegment(value: g, label: Text('${g.code} · ${g.label}'))],
+            segments: [for (final g in Grade.values) ButtonSegment(value: g, label: Text('Grade ${g.code}'))],
             selected: {_grade},
             showSelectedIcon: false,
             onSelectionChanged: (s) => setState(() => _grade = s.first),
           ),
+          const SizedBox(height: 6),
+          Text(_grade.label, style: const TextStyle(color: AppColors.muted, fontSize: 12.5)),
           const SizedBox(height: 16),
           const Text('Points de contrôle', style: TextStyle(fontWeight: FontWeight.w700)),
           for (final e in _checks.entries)
