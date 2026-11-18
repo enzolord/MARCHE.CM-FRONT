@@ -102,7 +102,7 @@ class BuyerHome extends StatelessWidget {
           if (flash.isNotEmpty) ...[
             const SectionTitle('⚡ Ventes Flash près de vous'),
             SizedBox(
-              height: 150,
+              height: 178,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -118,7 +118,7 @@ class BuyerHome extends StatelessWidget {
           SectionTitle('Recommandé pour vous', action: 'Marché', onAction: () => go<void>(context, const MarketScreen(standalone: true))),
           if (recommended.isEmpty)
             const Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: InfoBanner(
                 icon: Icons.lightbulb_outline,
                 text: 'Publiez une demande : nous vous proposons les meilleures offres selon la distance, le prix et la quantité.',

@@ -34,6 +34,11 @@ jobs:
       - name: Dépendances
         run: flutter pub get
 
+      - name: Versions utilisées
+        run: |
+          flutter --version
+          grep -A4 -E "^  (material_ui|cupertino_ui):" pubspec.lock
+
       - name: Analyse statique
         run: flutter analyze --no-fatal-infos
 
