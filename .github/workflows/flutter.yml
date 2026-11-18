@@ -1,0 +1,57 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    name: Analyse, tests et builds
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Générer les dossiers de plateforme manquants
+        run: flutter create . --org cm.marche --project-name marche_cm --platforms=android,web
+
+      - name: Dépendances
+        run: flutter pub get
+
+      - name: Analyse statique
+        run: flutter analyze --no-fatal-infos
+
+      - name: Tests
+        run: flutter test
+
+      - name: Build web
+        run: flutter build web --release --base-href ./
+
+      - name: Build APK Android
+        run: flutter build apk --release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: marche-cm-web
+          path: build/web
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: marche-cm-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
