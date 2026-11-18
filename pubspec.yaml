@@ -1,0 +1,32 @@
+name: marche_cm
+description: "MARCHE.CM — mise en relation entre producteurs agricoles et transformateurs agroalimentaires au Cameroun."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  # Composants Material et Cupertino, sortis du SDK depuis Flutter 3.47.
+  material_ui: ^1.11.1
+  cupertino_ui: ^1.1.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
