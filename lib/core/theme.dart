@@ -28,7 +28,7 @@ ThemeData buildTheme() {
     surface: Colors.white,
     error: AppColors.red,
   );
-  final base = ThemeData(colorScheme: scheme, useMaterial3: true);
+  final base = ThemeData(colorScheme: scheme, useMaterial3: true, fontFamily: 'Poppins');
   return base.copyWith(
     scaffoldBackgroundColor: AppColors.page,
     appBarTheme: const AppBarTheme(
@@ -38,6 +38,7 @@ ThemeData buildTheme() {
       scrolledUnderElevation: 1,
       centerTitle: false,
       titleTextStyle: TextStyle(
+        fontFamily: 'Poppins',
         color: AppColors.ink,
         fontSize: 20,
         fontWeight: FontWeight.w700,

@@ -10,6 +10,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   verifier:
     name: Analyse, tests et builds
@@ -37,7 +40,7 @@ jobs:
       - name: Versions utilisées
         run: |
           flutter --version
-          grep -A6 -E "^  (material_ui|cupertino_ui):" pubspec.lock | grep -E "_ui:|version"
+          grep -A9 -E "^  (material_ui|cupertino_ui):" pubspec.lock | grep -E "_ui:|version"
 
       - name: Analyse statique
         run: flutter analyze --no-fatal-infos
@@ -46,7 +49,7 @@ jobs:
         run: flutter test
 
       - name: Build web
-        run: flutter build web --release
+        run: flutter build web --release --no-web-resources-cdn
 
       - name: Build APK Android
         run: flutter build apk --release
@@ -60,3 +63,15 @@ jobs:
         with:
           name: marche-cm-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Publier la démo web sur la branche demo-web
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/feature/')
+        run: |
+          cd build/web
+          touch .nojekyll
+          git init -q -b demo-web
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Démo web — ${GITHUB_SHA::7}"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" demo-web
