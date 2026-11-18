@@ -5,11 +5,15 @@ import 'package:material_ui/material_ui.dart';
 import 'core/theme.dart';
 import 'data/app_state.dart';
 import 'features/auth/splash_screen.dart';
+import 'features/shell/home_shell.dart';
 
 class MarcheApp extends StatelessWidget {
-  const MarcheApp({super.key, required this.state});
+  const MarcheApp({super.key, required this.state, this.startTab});
 
   final AppState state;
+
+  /// Si renseigné, l'application s'ouvre directement sur cet onglet.
+  final int? startTab;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,7 @@ class MarcheApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        home: const SplashScreen(),
+        home: startTab == null ? const SplashScreen() : HomeShell(initialIndex: startTab!),
       ),
     );
   }
