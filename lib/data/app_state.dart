@@ -490,7 +490,7 @@ class AppState extends ChangeNotifier {
     if (m.order.status == OrderStatus.enLivraison) {
       m.order.move(OrderStatus.livree, 'Remis au transformateur à ${m.dropoff}');
     }
-    _wallet.insert(0, WalletTx(kind: TxKind.versement, label: 'Mission ${m.pickup.split(' — ').first} → ${m.dropoff.split(' — ').first}', amount: m.fee, at: DateTime.now()));
+    _wallet.insert(0, WalletTx(kind: TxKind.versement, label: 'Mission ${m.pickup.split(' — ').first} – ${m.dropoff.split(' — ').first}', amount: m.fee, at: DateTime.now()));
     notifyListeners();
   }
 

@@ -17,8 +17,9 @@ import '../producer/my_offers_screen.dart';
 import '../producer/producer_home.dart';
 
 class _Tab {
-  const _Tab(this.label, this.icon, this.selectedIcon, this.page);
+  const _Tab(this.label, this.icon, this.selectedIcon, this.page, {this.orders = false});
   final String label;
+  final bool orders;
   final IconData icon;
   final IconData selectedIcon;
   final Widget page;
@@ -41,16 +42,16 @@ class _HomeShellState extends State<HomeShell> {
   List<_Tab> _tabsFor(Role role) => switch (role) {
         Role.producteur || Role.cooperative => const [
             _Tab('Accueil', Icons.home_outlined, Icons.home, ProducerHome()),
-            _Tab('Mes offres', Icons.storefront_outlined, Icons.storefront, MyOffersScreen()),
-            _Tab('Commandes', Icons.receipt_long_outlined, Icons.receipt_long, OrdersScreen()),
-            _Tab('Portefeuille', Icons.account_balance_wallet_outlined, Icons.account_balance_wallet, WalletScreen()),
+            _Tab('Offres', Icons.storefront_outlined, Icons.storefront, MyOffersScreen()),
+            _Tab('Ventes', Icons.receipt_long_outlined, Icons.receipt_long, OrdersScreen(), orders: true),
+            _Tab('Solde', Icons.account_balance_wallet_outlined, Icons.account_balance_wallet, WalletScreen()),
             _Tab('Plus', Icons.menu, Icons.menu, ProfileScreen()),
           ],
         Role.transformateur => const [
             _Tab('Accueil', Icons.home_outlined, Icons.home, BuyerHome()),
             _Tab('Marché', Icons.search, Icons.search, MarketScreen()),
             _Tab('Flash', Icons.bolt_outlined, Icons.bolt, FlashMarketScreen()),
-            _Tab('Commandes', Icons.receipt_long_outlined, Icons.receipt_long, OrdersScreen()),
+            _Tab('Achats', Icons.receipt_long_outlined, Icons.receipt_long, OrdersScreen(), orders: true),
             _Tab('Plus', Icons.menu, Icons.menu, ProfileScreen()),
           ],
         Role.transporteur => const [
@@ -94,7 +95,7 @@ class _HomeShellState extends State<HomeShell> {
         destinations: [
           for (final t in tabs)
             NavigationDestination(
-              icon: t.label == 'Commandes'
+              icon: t.orders
                   ? CountBadge(count: state.activeOrders.where((o) => o.status == OrderStatus.payeeSequestre || o.status == OrderStatus.livree).length, child: Icon(t.icon))
                   : Icon(t.icon),
               selectedIcon: Icon(t.selectedIcon),

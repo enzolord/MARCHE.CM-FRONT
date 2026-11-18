@@ -150,7 +150,7 @@ class MockData {
       Conversation(id: 'cv1', other: transformateur, subject: 'Tomates Roma — 1 200 kg', unread: 2, messages: [
         Message(fromMe: false, text: 'Bonjour, vos tomates sont-elles disponibles pour jeudi ?', at: _ago(hours: 3)),
         Message(fromMe: true, text: 'Oui, la récolte se termine mercredi soir.', at: _ago(hours: 2, minutes: 40)),
-        Message(fromMe: false, text: 'Pouvez-vous faire 330 FCFA le kg pour 1 000 kg ?', at: _ago(minutes: 50)),
+        Message(fromMe: false, text: 'Pouvez-vous faire 330 FCFA le kg pour 1\u00A0000 kg ?', at: _ago(minutes: 50)),
         Message(fromMe: false, text: 'Je peux commander aujourd’hui.', at: _ago(minutes: 48)),
       ]),
       Conversation(id: 'cv2', other: transformateur3, subject: 'Plantain — commande #C1043', messages: [
@@ -176,7 +176,7 @@ class MockData {
         AppNotification(title: 'Confirmez la réception', body: 'Commande #C1041 livrée. Sans réponse sous 72 h, elle sera validée.', at: _ago(hours: 1), icon: Icons.inventory, read: true),
       ],
       Role.transporteur: [
-        AppNotification(title: 'Nouvelle mission', body: 'Foumbot → Douala, 796 kg, 45 000 FCFA.', at: _ago(hours: 1), icon: Icons.route, color: AppColors.flash),
+        AppNotification(title: 'Nouvelle mission', body: 'Foumbot vers Douala, 796 kg, 45 000 FCFA.', at: _ago(hours: 1), icon: Icons.route, color: AppColors.flash),
       ],
       Role.agent: [
         AppNotification(title: 'Lot attendu', body: 'Plantain #C1043 déposé samedi avant 10 h.', at: _ago(hours: 2), icon: Icons.warehouse),
@@ -203,7 +203,7 @@ class MockData {
         WalletTx(kind: TxKind.paiement, label: 'Abonnement Pro — novembre', amount: -15000, at: _ago(days: 17)),
       ],
       Role.transporteur: [
-        WalletTx(kind: TxKind.versement, label: 'Mission Foumbot → Douala', amount: 15000, at: _ago(days: 3)),
+        WalletTx(kind: TxKind.versement, label: 'Mission Foumbot – Douala', amount: 15000, at: _ago(days: 3)),
       ],
       Role.agent: [],
     };

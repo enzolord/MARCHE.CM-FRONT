@@ -57,14 +57,14 @@ ThemeData buildTheme() {
       style: FilledButton.styleFrom(
         minimumSize: const Size.fromHeight(52),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(fontFamily: 'Poppins', fontSize: 15, fontWeight: FontWeight.w700),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         minimumSize: const Size.fromHeight(52),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(fontFamily: 'Poppins', fontSize: 15, fontWeight: FontWeight.w700),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -94,7 +94,8 @@ ThemeData buildTheme() {
       height: 68,
       labelTextStyle: WidgetStateProperty.resolveWith(
         (states) => TextStyle(
-          fontSize: 12,
+          fontFamily: 'Poppins',
+          fontSize: 11.5,
           fontWeight: states.contains(WidgetState.selected)
               ? FontWeight.w700
               : FontWeight.w500,

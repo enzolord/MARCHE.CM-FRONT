@@ -150,15 +150,15 @@ class OfferDetailScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      child: OutlinedButton.icon(
+                      flex: 2,
+                      child: OutlinedButton(
                         onPressed: () => go<void>(context, ChatScreen(conversation: state.conversationWith(p, '${offer.product.name} — ${qty(offer.quantity)} ${offer.product.unit}'))),
-                        icon: const Icon(Icons.chat_bubble_outline),
-                        label: const Text('Négocier'),
+                        child: const Text('Négocier'),
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: FilledButton.icon(
                         onPressed: () => go<void>(context, CheckoutScreen(offer: offer)),
                         icon: const Icon(Icons.shopping_cart_checkout),

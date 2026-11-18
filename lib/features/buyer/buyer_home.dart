@@ -84,12 +84,15 @@ class BuyerHome extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-            child: Row(
+            child: IntrinsicHeight(
+              child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(child: KpiCard(label: 'Commandes en cours', value: '${active.length}', icon: Icons.local_shipping_outlined, color: AppColors.blue)),
                 const SizedBox(width: 10),
                 Expanded(child: KpiCard(label: 'Achats du mois', value: fcfa(state.monthPurchases), icon: Icons.shopping_bag_outlined)),
               ],
+            ),
             ),
           ),
           if (active.isNotEmpty) ...[
@@ -109,7 +112,7 @@ class BuyerHome extends StatelessWidget {
                 itemCount: flash.length,
                 separatorBuilder: (_, _) => const SizedBox(width: 10),
                 itemBuilder: (_, i) => SizedBox(
-                  width: 290,
+                  width: 310,
                   child: FlashCard(lot: flash[i], compact: true, onTap: () => go<void>(context, FlashDetailScreen(lot: flash[i]))),
                 ),
               ),

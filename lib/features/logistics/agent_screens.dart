@@ -32,7 +32,9 @@ class AgentHome extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Row(
+          IntrinsicHeight(
+            child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(child: KpiCard(label: 'Lots à contrôler', value: '${here.length}', icon: Icons.inventory_2_outlined, color: AppColors.flash)),
               const SizedBox(width: 10),
@@ -40,6 +42,7 @@ class AgentHome extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(child: KpiCard(label: 'Contrôlés', value: '${state.controlledLots.length}', icon: Icons.verified_outlined)),
             ],
+          ),
           ),
           const SectionTitle('Présents au point de collecte', padding: EdgeInsets.fromLTRB(0, 20, 0, 8)),
           if (here.isEmpty) const Text('Aucun lot en attente de contrôle.', style: TextStyle(color: AppColors.muted)),
@@ -76,7 +79,7 @@ class _LotTile extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         leading: ProductThumb(order.product, size: 44, flash: order.isFlash),
         title: Text('${order.shortId} · ${qty(order.quantity)} ${order.product.unit} ${order.product.name.toLowerCase()}', style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14.5)),
-        subtitle: Text('${order.producer.displayName} → ${order.buyer.displayName}'),
+        subtitle: Text('De ${order.producer.displayName}, pour ${order.buyer.displayName}'),
         trailing: FilledButton.tonal(onPressed: onTap, style: FilledButton.styleFrom(minimumSize: const Size(0, 40)), child: Text(actionLabel)),
       ),
     );

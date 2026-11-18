@@ -28,8 +28,8 @@ void main() {
     await tester.pumpWidget(_shell(state));
     await tester.pump();
     expect(find.textContaining('Bonjour'), findsOneWidget);
-    expect(find.text('Mes offres'), findsWidgets);
-    await tester.tap(find.text('Mes offres').last);
+    expect(find.text('Offres'), findsWidgets);
+    await tester.tap(find.text('Offres').last);
     await tester.pump(const Duration(milliseconds: 500));
     expect(find.text('Publier'), findsOneWidget);
   });

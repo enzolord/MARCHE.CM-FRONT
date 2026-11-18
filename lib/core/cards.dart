@@ -144,7 +144,7 @@ class FlashCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Pill('-${lot.discountAt(now)} %', color: AppColors.flash, filled: true),
+                      Pill(lot.discountAt(now) == 0 ? 'Nouveau' : '-${lot.discountAt(now)} %', color: AppColors.flash, filled: true),
                     ],
                   ),
                   const SizedBox(height: 10),
